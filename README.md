@@ -12,3 +12,5 @@ In this implementation, I use two A100 GPUs to perform the multiplication. The C
 
 ## Tensor Core Implementation (matmul_tensor)
 In this implementation, I use the tensor cores on NVIDIA A100 GPU. The precision of the input matrices needs to be FP16 and the precision of the output matrix is FP32. Tensor Cores use 16x16 tiles of matrices for efficient computation. When performing matrix multiplication, the two matrices (A and B) are broken into 16x16 blocks, and each warp handles the multiplication of these blocks. Each thread within the warp will contribute to a small part of the matrix product, and the warp collectively computes the result of that 16x16 block multiplication. For 1024 x 1024 size, the kernel execution takes a time of 39 ms whereas memory transfer takes a time of 1.9 ms. For 8192 x 8192 size, the kernel execution takes a time of 14791 ms and memory transfer takes a time of 148.1 ms. 
+
+In conclusion, for 1024 x 1024 size matrices the asynchronous implementation works best whereas for 8192 x 8192 size the basic implementation works best.
