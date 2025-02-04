@@ -6,3 +6,6 @@ The basic implementation of matrix-matrix multiplication (A x B = C) involves on
 
 ## Asynchronous Implementation (matmul_asynchronous.cu)
 In this implementation CUDA stream is utilized to implement kernel execution and memory transfer concurrently. Stream 0 is utilized for memory transfer and Stream 1 is utlilized for kernel execution on same GPU. For 1024 x 1024, the kernel execution takes a time of 8.9 ms and memory transfer takes a time of 1.8 ms. Therefore, there is reduction in kernel execution time by `7.3%` and memory transfer time by `37.9%` with respect to the basic implementation. For 8192 x 8192 size, the kernel execution takes a time of 3265.6 ms and memory transfer takes a time of 203.9 ms. Changing tile size did lot lead to much improvement.
+
+## Multi-GPU Implementation (matmul_multigpu.cu)
+
